@@ -1,8 +1,5 @@
 package me.codyclaborn.lox;
 
-/**
- * Created by cxsqu on 2/17/2017.
- */
 public enum TokenType {
     // Single character tokesn
     LEFT_PAREN, RIGHT_PAREN, LEFT_BRACE, RIGHT_BRACE,

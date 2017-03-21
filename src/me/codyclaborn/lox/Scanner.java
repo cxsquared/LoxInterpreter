@@ -6,9 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import static me.codyclaborn.lox.TokenType.*;
-/**
- * Created by cxsqu on 2/17/2017.
- */
+
 public class Scanner {
     private final String source;
     private final List<Token> tokens = new ArrayList<>();

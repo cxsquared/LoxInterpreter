@@ -2,9 +2,6 @@ package me.codyclaborn.lox;
 
 import jdk.nashorn.internal.objects.annotations.Optimistic;
 
-/**
- * Created by cxsqu on 2/18/2017.
- */
 public class AstPrinter implements Expr.Visitor<String> {
     String print(Expr expr) {
         return expr.accept(this);

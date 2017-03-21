@@ -1,8 +1,5 @@
 package me.codyclaborn.lox;
 
-/**
- * Created by cxsqu on 2/17/2017.
- */
 public class Token {
     final TokenType type;
     final String lexeme;

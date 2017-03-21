@@ -1,14 +1,10 @@
 package me.codyclaborn.tool;
 
-import javax.print.DocFlavor;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Arrays;
 import java.util.List;
 
-/**
- * Created by cxsqu on 2/17/2017.
- */
 public class GenerateAst {
     public static void main(String[] args) throws IOException {
         if (args.length != 1) {
