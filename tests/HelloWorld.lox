@@ -1,0 +1,7 @@
+// This is a comment block
+print "Hello World!";
+/* This is a set of comments
+   It should support new lines
+   and what not
+*/
+print "Cool things!";
