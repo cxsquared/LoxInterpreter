@@ -88,9 +88,9 @@ public class Parser {
     private Expr postfix() {
         Expr expr = primary();
 
-        if(match(PLUS_PLUS, MINUS_MINUS)) {
+        while(match(PLUS_PLUS, MINUS_MINUS)) {
             Token operator = previous();
-            return new Expr.Postfix(expr, operator);
+            expr = new Expr.Postfix(expr, operator);
         }
 
         return expr;
