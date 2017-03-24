@@ -9,12 +9,12 @@ public class AstPrinter implements Expr.Visitor<String> {
 
     @Override
     public String visitBinaryExpr(Expr.Binary expr) {
-        return parenthesize(expr.operator.lexeme, expr.left, expr.right);
+        return rightParenthesize(expr.operator.lexeme, expr.left, expr.right);
     }
 
     @Override
     public String visitGroupingExpr(Expr.Grouping expr) {
-        return parenthesize("group", expr.expression);
+        return rightParenthesize("group", expr.expression);
     }
 
     @Override
@@ -24,10 +24,13 @@ public class AstPrinter implements Expr.Visitor<String> {
 
     @Override
     public String visitUnaryExpr(Expr.Unary expr) {
-        return parenthesize(expr.operator.lexeme, expr.right);
+        return rightParenthesize(expr.operator.lexeme, expr.right);
     }
 
-    private String parenthesize(String name, Expr... exprs) {
+    @Override
+    public String visitPostfixExpr(Expr.Postfix expr) {return leftParenthesize(expr.operator.lexeme, expr.left); }
+
+    private String rightParenthesize(String name, Expr... exprs) {
         StringBuilder builder = new StringBuilder();
 
         builder.append("(").append(name);
@@ -36,6 +39,19 @@ public class AstPrinter implements Expr.Visitor<String> {
             builder.append(expr.accept(this));
         }
         builder.append(")");
+
+        return builder.toString();
+    }
+
+    private String leftParenthesize(String name, Expr... exprs) {
+        StringBuilder builder = new StringBuilder();
+
+        builder.append("(");
+        for (Expr expr : exprs) {
+            builder.append(expr.accept(this));
+            builder.append(" ");
+        }
+        builder.append(name).append(")");
 
         return builder.toString();
     }
