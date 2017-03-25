@@ -9,6 +9,7 @@ abstract class Expr {
     R visitLiteralExpr(Literal expr);
     R visitUnaryExpr(Unary expr);
     R visitPostfixExpr(Postfix expr);
+    R visitConditionalExpr(Conditional expr);
   }
 
   static class Binary extends Expr {
@@ -77,6 +78,26 @@ abstract class Expr {
 
     final Expr left;
     final Token operator;
+  }
+
+  static class Conditional extends Expr {
+    Conditional(Expr left, Token question, Expr mid, Token colon, Expr right) {
+      this.left = left;
+      this.question = question;
+      this.mid = mid;
+      this.colon = colon;
+      this.right = right;
+    }
+
+    <R> R accept(Visitor<R> visitor) {
+      return visitor.visitConditionalExpr(this);
+    }
+
+    final Expr left;
+    final Token question;
+    final Expr mid;
+    final Token colon;
+    final Expr right;
   }
 
   abstract <R> R accept(Visitor<R> visitor);

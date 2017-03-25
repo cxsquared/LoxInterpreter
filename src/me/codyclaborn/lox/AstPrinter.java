@@ -30,6 +30,9 @@ public class AstPrinter implements Expr.Visitor<String> {
     @Override
     public String visitPostfixExpr(Expr.Postfix expr) {return leftParenthesize(expr.operator.lexeme, expr.left); }
 
+    @Override
+    public String visitConditionalExpr(Expr.Conditional expr) {return "(" + print(expr.left) + " ? " + print(expr.mid) + " : " + print(expr.right) + ")"; }
+
     private String rightParenthesize(String name, Expr... exprs) {
         StringBuilder builder = new StringBuilder();
 

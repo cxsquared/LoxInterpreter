@@ -39,6 +39,8 @@ public class Scanner {
             case '}': addToken(RIGHT_BRACE); break;
             case ',': addToken(COMMA); break;
             case '.': addToken(DOT); break;
+            case '?': addToken(QUESTION_MARK); break;
+            case ':': addToken(COLON); break;
             case '-':
                 if (match('-')) {
                     addToken(MINUS_MINUS);

@@ -18,13 +18,27 @@ public class Parser {
     Expr parse() {
         try {
             return expression();
-        } catch(ParseError error) {
+        } catch (ParseError error) {
             return null;
         }
     }
 
     private Expr expression() {
-        return equality();
+        return conditional();
+    }
+
+    private Expr conditional() {
+        Expr expr = equality();
+
+        while (match(QUESTION_MARK)) {
+            Token questionMark = previous();
+            Expr mid = expression();
+            Token colon = consume(COLON, "Expected ':' after ? ");
+            Expr right = conditional();
+            return new Expr.Conditional(expr, questionMark, mid, colon, right);
+        }
+
+        return expr;
     }
 
     private Expr equality() {
