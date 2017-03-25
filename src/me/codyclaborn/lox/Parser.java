@@ -24,6 +24,12 @@ public class Parser {
     }
 
     private Expr expression() {
+        while (multiCheck(BANG_EQUAL, EQUAL_EQUAL, GREATER, GREATER_EQUAL, LESS, LESS_EQUAL, PLUS)) {
+            Token errorToken = peek();
+            error(errorToken, "Expected an expression on the right side before the operator.");
+            synchronize();
+        }
+
         return conditional();
     }
 
@@ -134,6 +140,14 @@ public class Parser {
                 advance();
                 return true;
             }
+        }
+
+        return false;
+    }
+
+    private boolean multiCheck(TokenType... types) {
+        for (TokenType type : types) {
+            if(check(type)) return true;
         }
 
         return false;
