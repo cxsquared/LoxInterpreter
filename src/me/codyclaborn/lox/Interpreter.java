@@ -152,8 +152,10 @@ public class Interpreter implements Expr.Visitor<Object> {
     }
 
     private void checkNumberOperands(Token operator, Object left, Object right) {
-       if (left instanceof Double && right instanceof Double) return;
-       throw new RuntimeError(operator, "Operands must be numbers.");
+        if(operator.type == TokenType.SLASH && left instanceof  Double && right instanceof  Double && (double)right == 0)
+            throw new RuntimeError(operator, "You can not divide by 0.");
+        if (left instanceof Double && right instanceof Double) return;
+        throw new RuntimeError(operator, "Operands must be numbers.");
     }
 
     private Object evaluate(Expr expr) {
