@@ -1,8 +1,5 @@
 package me.codyclaborn.lox;
 
-/**
- * Created by cxsqu on 4/9/2017.
- */
 public class RuntimeError extends RuntimeException {
    final Token token;
 

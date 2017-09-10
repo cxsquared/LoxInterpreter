@@ -8,6 +8,11 @@ public class AstPrinter implements Expr.Visitor<String> {
     }
 
     @Override
+    public String visitAssignExpr(Expr.Assign expr) {
+        return null;
+    }
+
+    @Override
     public String visitBinaryExpr(Expr.Binary expr) {
         return rightParenthesize(expr.operator.lexeme, expr.left, expr.right);
     }
@@ -32,6 +37,11 @@ public class AstPrinter implements Expr.Visitor<String> {
 
     @Override
     public String visitConditionalExpr(Expr.Conditional expr) {return "(" + print(expr.left) + " ? " + print(expr.mid) + " : " + print(expr.right) + ")"; }
+
+    @Override
+    public String visitVariableExpr(Expr.Variable expr) {
+        return null;
+    }
 
     private String rightParenthesize(String name, Expr... exprs) {
         StringBuilder builder = new StringBuilder();

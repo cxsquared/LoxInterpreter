@@ -1,7 +1,19 @@
-// This is a comment block
-print "Hello World!";
-/* This is a set of comments
-   It should support new lines
-   and what not
-*/
-print "Cool things!";
+var a = "global a";
+var b = "global b";
+var c = "global c";
+{
+  var a = "outer a";
+  var b = "outer b";
+  {
+    var a = "inner a";
+    print a;
+    print b;
+    print c;
+  }
+  print a;
+  print b;
+  print c;
+}
+print a;
+print b;
+print c;
